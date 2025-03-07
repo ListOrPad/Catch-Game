@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private int score = 0;
     public bool GameStarted { get; set; }
+    private UIManager UI;
 
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI scoreGameOverText;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        UI = GetComponent<UIManager>();
     }
 
     private void Start()
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0;
+        UI.EnableUIText();
         gamePanel.SetActive(true);
         scoreGameOverText.text = score.ToString();
     }
