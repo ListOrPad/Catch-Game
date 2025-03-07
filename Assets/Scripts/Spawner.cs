@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject greenBallPrefab;
-    [SerializeField] private GameObject redBallPrefab;
+    [SerializeField] private GameObject greenGemPrefab;
+    [SerializeField] private GameObject redGemPrefab;
     [SerializeField] private float spawnRate = 1f;
 
     void Start()
@@ -18,8 +18,9 @@ public class Spawner : MonoBehaviour
 
         // —лучайно выбираем тип шарика (70% зеленых, 30% красных)
         if (Random.Range(0, 10) < 7)
-            Instantiate(greenBallPrefab, spawnPos, Quaternion.identity);
+            Instantiate(greenGemPrefab, spawnPos, Quaternion.identity);
         else
-            Instantiate(redBallPrefab, spawnPos, Quaternion.identity);
+            Instantiate(redGemPrefab, spawnPos, Quaternion.identity);
     }
+
 }

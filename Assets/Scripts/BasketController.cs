@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class BasketController : MonoBehaviour
 {
+    [SerializeField] GameManager game;
+
+    private void Start()
+    {
+    }
+
     void Update()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -21,6 +27,7 @@ public class BasketController : MonoBehaviour
         {
             // Завершите игру или отнимите жизнь
             Debug.Log("Game Over!");
+            game.GameOver();
             Destroy(other.gameObject);
         }
     }
