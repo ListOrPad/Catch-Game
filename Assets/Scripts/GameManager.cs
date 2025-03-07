@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     {
         GameStarted = true;
         gamePanel.SetActive(false);
+        scoreText.text = "Score: 0";
         Time.timeScale = 1;
         ResetGame(GameStarted);
     }
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         UI.EnableUIText();
         gamePanel.SetActive(true);
         scoreGameOverText.text = score.ToString();
+        score = 0;
     }
 
     private void ResetGame(bool gameStared)
