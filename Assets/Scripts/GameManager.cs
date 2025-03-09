@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    [SerializeField] private Spawner spawner;
     private int score = 0;
     public bool GameStarted { get; set; }
     private UIManager UI;
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameStared)
         {
+            spawner.SpawnRate = 1.5f;
             // Destriy all green gems
             GameObject[] greenGems = GameObject.FindGameObjectsWithTag("GreenGem");
             foreach (GameObject gem in greenGems)

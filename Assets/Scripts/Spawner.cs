@@ -4,20 +4,21 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject greenGemPrefab;
     [SerializeField] private GameObject redGemPrefab;
-    [SerializeField] private float spawnRate = 1.5f;
+    [field:SerializeField] public float SpawnRate { get; set; } = 1.5f;
     private const float maxSpawnRate = 0.3f;
     private float timer = 0f;
+
 
     void Update()
     {
         // Уменьшаем spawnRate
-        spawnRate = Mathf.Max(maxSpawnRate, spawnRate - Time.deltaTime * 0.01f);
+        SpawnRate = Mathf.Max(maxSpawnRate, SpawnRate - Time.deltaTime * 0.01f);
 
         // Обновляем таймер
         timer += Time.deltaTime;
 
         // Если таймер превысил spawnRate, спавним объект и сбрасываем таймер
-        if (timer >= spawnRate)
+        if (timer >= SpawnRate)
         {
             SpawnBall();
             timer = 0f; // Сбрасываем таймер
