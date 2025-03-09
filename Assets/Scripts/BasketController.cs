@@ -1,14 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BasketController : MonoBehaviour
 {
     [SerializeField] GameManager game;
-
-    private void Start()
-    {
-    }
 
     void Update()
     {
@@ -21,12 +15,15 @@ public class BasketController : MonoBehaviour
         if (other.CompareTag("GreenGem"))
         {
             GameManager.Instance.AddScore(10);
+
+            Sound.Instance.PlayGemSound();
             Destroy(other.gameObject);
         }
         else if (other.CompareTag("RedGem"))
         {
             // Завершите игру или отнимите жизнь
             Debug.Log("Game Over!");
+            Sound.Instance.PlayBlastSound();
             game.GameOver();
             Destroy(other.gameObject);
         }
