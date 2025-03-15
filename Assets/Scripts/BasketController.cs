@@ -3,6 +3,7 @@ using UnityEngine;
 public class BasketController : MonoBehaviour
 {
     [SerializeField] GameManager game;
+    private HealthSystem healthSystem;
 
     void Update()
     {
@@ -25,6 +26,12 @@ public class BasketController : MonoBehaviour
             Debug.Log("Game Over!");
             Sound.Instance.PlayBlastSound();
             game.GameOver();
+            Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("ChallengeGem"))
+        {
+            GameManager.Instance.AddScore(50);
+            Sound.Instance.PlayGemSound();
             Destroy(other.gameObject);
         }
     }

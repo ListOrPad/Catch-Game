@@ -9,6 +9,7 @@ public class Sound : MonoBehaviour
 
     [SerializeField] private AudioClip pickUpSound;
     [SerializeField] private AudioClip blastSound;
+    [SerializeField] private AudioClip hurtSound;
 
     private void Awake()
     {
@@ -23,5 +24,10 @@ public class Sound : MonoBehaviour
     public void PlayBlastSound()
     {
         source.PlayOneShot(blastSound);
+    }
+
+    public void PlayHurtSound()
+    {
+        source.PlayOneShot(hurtSound);
     }
 }
