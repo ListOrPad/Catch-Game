@@ -10,29 +10,37 @@ public class Spawner : MonoBehaviour
     private const float maxSpawnRate = 0.3f;
     private float timer = 0f;
 
-    // Список для хранения активных объектов
+    // List to store active objects
     public static List<GameObject> ActiveGems = new List<GameObject>();
 
 
     void Update()
     {
-        // Уменьшаем spawnRate
+        // Decrease spawnRate
         SpawnRate = Mathf.Max(maxSpawnRate, SpawnRate - Time.deltaTime * 0.01f);
 
         // Обновляем таймер
         timer += Time.deltaTime;
 
-        // Если таймер превысил spawnRate, спавним объект и сбрасываем таймер
+        //If timer is over spawnRate, spawn object and reset timer
         if (timer >= SpawnRate)
         {
             SpawnBall();
-            timer = 0f; // Сбрасываем таймер
+            timer = 0f;
+        }
+        foreach (var gem in ActiveGems)
+        {
+            if (GameManager.IsTouchingBottomBorder(gem) && !gem.CompareTag("ChallengeGem"))
+            {
+                RemoveGem(gem);
+                break;
+            }
         }
     }
 
     void SpawnBall()
     {
-        float randomX = Random.Range(-8f, 8f); // Границы экрана
+        float randomX = Random.Range(-8f, 8f); // edges of the screen
         Vector3 spawnPos = new Vector3(randomX, 7, 0);
 
 
@@ -48,10 +56,17 @@ public class Spawner : MonoBehaviour
         ActiveGems.Add(gem);
     }
 
-    // Метод для удаления объекта из списка
+    /// <summary>
+    /// Method for deleting and object from the list
+    /// </summary>
+    /// <param name="gem"></param>
     public static void RemoveGem(GameObject gem)
     {
-        ActiveGems.Remove(gem);
+        //if gem exists in the list ActiveGems
+        if (ActiveGems.Contains(gem))
+        {
+            ActiveGems.Remove(gem);
+            Destroy(gem);
+        }
     }
-
 }

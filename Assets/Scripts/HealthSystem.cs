@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    [field: SerializeField] public int Health { get; set; } = 3;
+    [field: SerializeField] public static int Health { get; set; } = 3;
 
     
 
@@ -11,27 +11,16 @@ public class HealthSystem : MonoBehaviour
         // Проверяем все активные объекты
         foreach (var gem in Spawner.ActiveGems)
         {
-            if (IsTouchingBottomBorder(gem) && gem.GetComponent<CircleCollider2D>().CompareTag("ChallengeGem"))
+            if (GameManager.IsTouchingBottomBorder(gem) && gem.CompareTag("ChallengeGem"))
             {
                 Hurt();
                 Spawner.RemoveGem(gem);
-                Destroy(gem);
                 break;
             }
         }
     }
 
-    private bool IsTouchingBottomBorder(GameObject gem)
-    {
-        // Получаем нижнюю границу экрана
-        float bottomBorder = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
-
-        // Получаем нижнюю точку коллайдера объекта
-        float objectBottom = gem.GetComponent<CircleCollider2D>().bounds.min.y;
-
-        // Проверяем, коснулся ли объект нижней границы
-        return objectBottom <= bottomBorder;
-    }
+    
 
     public void Hurt()
     {

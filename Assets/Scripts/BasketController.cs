@@ -16,8 +16,8 @@ public class BasketController : MonoBehaviour
         if (other.CompareTag("GreenGem"))
         {
             GameManager.Instance.AddScore(10);
-
             Sound.Instance.PlayGemSound();
+            Spawner.ActiveGems.Remove(other.gameObject);
             Destroy(other.gameObject);
         }
         else if (other.CompareTag("RedGem"))
@@ -26,12 +26,14 @@ public class BasketController : MonoBehaviour
             Debug.Log("Game Over!");
             Sound.Instance.PlayBlastSound();
             game.GameOver();
+            Spawner.ActiveGems.Remove(other.gameObject);
             Destroy(other.gameObject);
         }
         else if (other.CompareTag("ChallengeGem"))
         {
             GameManager.Instance.AddScore(50);
             Sound.Instance.PlayGemSound();
+            Spawner.ActiveGems.Remove(other.gameObject);
             Destroy(other.gameObject);
         }
     }

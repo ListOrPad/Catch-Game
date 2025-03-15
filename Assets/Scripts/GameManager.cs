@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
             foreach (GameObject gem in greenGems)
             {
                 Destroy(gem);
+                Spawner.ActiveGems.Remove(gem);
             }
 
             // Destroy all red gems
@@ -68,9 +69,30 @@ public class GameManager : MonoBehaviour
             foreach (GameObject gem in redGems)
             {
                 Destroy(gem);
+                Spawner.ActiveGems.Remove(gem);
+            }
+            
+            GameObject[] ChallengeGems = GameObject.FindGameObjectsWithTag("ChallengeGem");
+            foreach (GameObject gem in ChallengeGems)
+            {
+                Destroy(gem);
+                Spawner.ActiveGems.Remove(gem);
             }
 
-            Debug.Log("All gems are destroyed, game started");
+            HealthSystem.Health = 3; //reset health
+
+            Debug.Log("All gems are destroyed, health reset, game started");
         }
+    }
+    public static bool IsTouchingBottomBorder(GameObject gem)
+    {
+        // Получаем нижнюю границу экрана
+        float bottomBorder = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
+
+        // Получаем нижнюю точку коллайдера объекта
+        float objectBottom = gem.GetComponent<CircleCollider2D>().bounds.min.y;
+
+        // Проверяем, коснулся ли объект нижней границы
+        return objectBottom <= bottomBorder;
     }
 }
