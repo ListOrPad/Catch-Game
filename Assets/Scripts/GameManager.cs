@@ -81,6 +81,8 @@ public class GameManager : MonoBehaviour
 
             HealthSystem.Health = 3; //reset health
 
+            HealthSystem.HealthChanged = true;
+
             Debug.Log("All gems are destroyed, health reset, game started");
         }
     }

@@ -25,6 +25,8 @@ public class BasketController : MonoBehaviour
             // Завершите игру или отнимите жизнь
             Debug.Log("Game Over!");
             Sound.Instance.PlayBlastSound();
+            HealthSystem.Health = 0;
+            HealthSystem.HealthChanged = true;
             game.GameOver();
             Spawner.ActiveGems.Remove(other.gameObject);
             Destroy(other.gameObject);

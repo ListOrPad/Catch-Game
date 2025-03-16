@@ -3,6 +3,7 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     [field: SerializeField] public static int Health { get; set; } = 3;
+    public static bool HealthChanged { get; set; }
 
     
 
@@ -41,5 +42,6 @@ public class HealthSystem : MonoBehaviour
     {
         Sound.Instance.PlayHurtSound();
         Health -= damage;
+        HealthChanged = true;
     }
 }
