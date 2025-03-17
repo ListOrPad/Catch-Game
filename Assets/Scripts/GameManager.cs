@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,11 +10,16 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     public bool GameStarted { get; set; }
     private UIManager UI;
+    private Localization localization;
 
-    [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI scoreGameOverText;
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private Button startButton;
+
+    private void Update()
+    {
+        localization.ChangeScoreText(score);
+    }
 
     void Awake()
     {
@@ -25,19 +31,19 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         startButton.onClick.AddListener(StartGame);
+        localization = FindObjectOfType<Localization>();
     }
 
     public void AddScore(int points)
     {
         score += points;
-        scoreText.text = "Score: " + score;
     }
 
     private void StartGame()
     {
         GameStarted = true;
         gamePanel.SetActive(false);
-        scoreText.text = "Score: 0";
+
         Time.timeScale = 1;
         ResetGame(GameStarted);
     }
