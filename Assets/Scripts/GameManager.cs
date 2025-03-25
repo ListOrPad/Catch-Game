@@ -7,19 +7,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     [SerializeField] private Spawner spawner;
-    private int score = 0;
+    public int Score { get; set; } = 0;
     public bool GameStarted { get; set; }
     private UIManager UI;
-    private Localization localization;
 
     [SerializeField] private TextMeshProUGUI scoreGameOverText;
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private Button startButton;
 
-    private void Update()
-    {
-        localization.ChangeScoreText(score);
-    }
 
     void Awake()
     {
@@ -31,12 +26,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         startButton.onClick.AddListener(StartGame);
-        localization = FindObjectOfType<Localization>();
     }
 
     public void AddScore(int points)
     {
-        score += points;
+        Score += points;
     }
 
     private void StartGame()
@@ -53,8 +47,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         UI.EnableUIText();
         gamePanel.SetActive(true);
-        scoreGameOverText.text = score.ToString();
-        score = 0;
+        scoreGameOverText.text = Score.ToString();
+        Score = 0;
     }
 
     private void ResetGame(bool gameStared)
@@ -94,13 +88,12 @@ public class GameManager : MonoBehaviour
     }
     public static bool IsTouchingBottomBorder(GameObject gem)
     {
-        // Получаем нижнюю границу экрана
         float bottomBorder = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).y;
 
-        // Получаем нижнюю точку коллайдера объекта
+        //Get lower point of the colider of an object
         float objectBottom = gem.GetComponent<CircleCollider2D>().bounds.min.y;
 
-        // Проверяем, коснулся ли объект нижней границы
+        //Check if object have touched bottom border
         return objectBottom <= bottomBorder;
     }
 }

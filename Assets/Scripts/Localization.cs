@@ -12,7 +12,6 @@ public class Localization : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
 
     public string CurrentLang { get; private set; }
-    public bool LangChanged { get; set; }
 
     private void Start()
     {
@@ -20,20 +19,17 @@ public class Localization : MonoBehaviour
         UpdateLanguageButton();
 
         if (YandexGame.lang == "en")
-            scoreText.text = "Current Score: " + 0;
+            scoreText.text = "Score: " + 0;
         else
-            scoreText.text = "Текущий Счет: " + 0;
+            scoreText.text = "Счет: " + 0;
     }
 
-    public void ChangeScoreText(int score)
+    public void UpdateScoreText(int score)
     { 
-        if (LangChanged)
-        {
-            if (YandexGame.lang == "en")
-                scoreText.text = "Current Score: " + score;
-            else
-                scoreText.text = "Текущий Счет: " + score;
-        }
+        if (YandexGame.lang == "en")
+            scoreText.text = "Score: " + score;
+        else
+            scoreText.text = "Счет: " + score;
     }
 
     private void UpdateLanguageButton()
@@ -57,7 +53,6 @@ public class Localization : MonoBehaviour
         {
             CurrentLang = YandexGame.lang;
             UpdateLanguageButton();
-            LangChanged = true;
         }
     }
 }

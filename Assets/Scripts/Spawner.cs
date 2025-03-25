@@ -59,7 +59,6 @@ public class Spawner : MonoBehaviour
     /// <summary>
     /// Method for deleting and object from the list
     /// </summary>
-    /// <param name="gem"></param>
     public static void RemoveGem(GameObject gem)
     {
         //if gem exists in the list ActiveGems

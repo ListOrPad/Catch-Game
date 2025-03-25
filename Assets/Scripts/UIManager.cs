@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -8,14 +9,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI yourScoreText;
     [SerializeField] private Image[] HPhearts;
 
+    private Localization localization;
+
     private void Update()
     {
-        if(HealthSystem.HealthChanged)
+        localization.UpdateScoreText(GameManager.Instance.Score);
+
+        if (HealthSystem.HealthChanged)
             EnableHearts();
     }
 
     private void Start()
     {
+        localization = FindObjectOfType<Localization>();
+
         gameOverScoreText.enabled = false;
         yourScoreText.enabled = false;
     }

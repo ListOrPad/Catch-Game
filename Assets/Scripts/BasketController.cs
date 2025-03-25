@@ -22,7 +22,6 @@ public class BasketController : MonoBehaviour
         }
         else if (other.CompareTag("RedGem"))
         {
-            // Завершите игру или отнимите жизнь
             Debug.Log("Game Over!");
             Sound.Instance.PlayBlastSound();
             HealthSystem.Health = 0;
