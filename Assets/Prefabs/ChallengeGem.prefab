@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7307798311982354352}
   - component: {fileID: 3239066202101328359}
   - component: {fileID: 2124586298822902315}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ChallengeGem
   m_TagString: ChallengeGem
   m_Icon: {fileID: 0}

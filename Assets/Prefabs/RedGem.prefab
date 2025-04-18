@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4015481726291471269}
   - component: {fileID: 5454575710665670306}
   - component: {fileID: 7721708146667174822}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RedGem
   m_TagString: RedGem
   m_Icon: {fileID: 0}
