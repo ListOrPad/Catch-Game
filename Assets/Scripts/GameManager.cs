@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gamePanel;
     [SerializeField] private Button startButton;
 
+    private Leaderboard leaderboard;
+
 
     void Awake()
     {
@@ -24,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        leaderboard = GetComponent<Leaderboard>();
+
         Time.timeScale = 0;
         startButton.onClick.AddListener(StartGame);
     }
@@ -31,6 +35,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(int points)
     {
         Score += points;
+        leaderboard.WriteRecord(Score);
     }
 
     private void StartGame()
