@@ -9,7 +9,7 @@ public class HealthSystem : MonoBehaviour
 
     private void Update()
     {
-        // Проверяем все активные объекты
+        // Check every active object
         foreach (var gem in Spawner.ActiveGems)
         {
             if (GameManager.IsTouchingBottomBorder(gem) && gem.CompareTag("ChallengeGem"))
@@ -30,7 +30,6 @@ public class HealthSystem : MonoBehaviour
         DecreaseHealth(1);
         Debug.Log(Health);
 
-        // Получаем ссылку на GameManager (если он есть на сцене)
         GameManager game = FindObjectOfType<GameManager>();
         if (game != null && Health <= 0)
         {

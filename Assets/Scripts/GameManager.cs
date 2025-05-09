@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Spawner spawner;
     public int Score { get; set; } = 0;
     public bool GameStarted { get; set; }
+    public bool IsGameOver { get; set; }
+
     private UIManager UI;
 
     [SerializeField] private TextMeshProUGUI scoreGameOverText;
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button startButton;
 
     private Leaderboard leaderboard;
+
 
 
     void Awake()
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
+        IsGameOver = false;
         GameStarted = true;
         gamePanel.SetActive(false);
 
@@ -49,7 +53,17 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        IsGameOver = true;
+        //Show Ad on game over
+        YandexGame.FullscreenShow();
+
+        
         Time.timeScale = 0;
+        //to finally stop dropping crystals
+        foreach (var rb in FindObjectsOfType<Rigidbody2D>())
+        {
+            rb.simulated = false;
+        }
         UI.EnableUIText();
         gamePanel.SetActive(true);
         scoreGameOverText.text = Score.ToString();
