@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
         foreach (var rb in FindObjectsOfType<Rigidbody2D>())
         {
             rb.simulated = false;
+            rb.gameObject.SetActive(false);
         }
         UI.EnableUIText();
         gamePanel.SetActive(true);
