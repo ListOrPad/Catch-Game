@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Spawner spawner;
     public int Score { get; set; } = 0;
     public bool GameStarted { get; set; }
-    public bool IsGameOver { get; set; }
 
     private UIManager UI;
 
@@ -44,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
-        IsGameOver = false;
+        YandexGame.FullscreenShow();
         GameStarted = true;
         gamePanel.SetActive(false);
 
@@ -54,18 +53,14 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        IsGameOver = true;
-        //Show Ad on game over
-        YandexGame.FullscreenShow();
-
-        
         Time.timeScale = 0;
-        //to finally stop dropping crystals
+
         foreach (var rb in FindObjectsOfType<Rigidbody2D>())
         {
             rb.simulated = false;
             rb.gameObject.SetActive(false);
         }
+
         UI.EnableUIText();
         gamePanel.SetActive(true);
         scoreGameOverText.text = Score.ToString();

@@ -16,14 +16,10 @@ public class Spawner : MonoBehaviour
 
     void Update()
     {
-
-        //if game is over stop spawning
-        if (GameManager.Instance.IsGameOver) return;
-
         SpawnRate = Mathf.Max(maxSpawnRate, SpawnRate - Time.deltaTime * 0.01f);
         timer += Time.deltaTime;
 
-        if (timer >= SpawnRate && !GameManager.Instance.IsGameOver)
+        if (timer >= SpawnRate)
         {
             SpawnBall();
             timer = 0f;
