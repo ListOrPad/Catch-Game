@@ -30,7 +30,7 @@ public class BasketController : MonoBehaviour
             Spawner.ActiveGems.Remove(other.gameObject);
             Destroy(other.gameObject);
         }
-        else if (other.CompareTag("ChallengeGem"))
+        else if (other.CompareTag("GoldenGem"))
         {
             GameManager.Instance.AddScore(50);
             Sound.Instance.PlayGemSound();

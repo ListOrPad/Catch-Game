@@ -12,7 +12,7 @@ public class HealthSystem : MonoBehaviour
         // Check every active object
         foreach (var gem in Spawner.ActiveGems)
         {
-            if (GameManager.IsTouchingBottomBorder(gem) && gem.CompareTag("ChallengeGem"))
+            if (GameManager.IsTouchingBottomBorder(gem) && gem.CompareTag("GoldenGem"))
             {
                 Hurt();
                 Spawner.RemoveGem(gem);

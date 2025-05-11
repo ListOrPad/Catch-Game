@@ -88,8 +88,8 @@ public class GameManager : MonoBehaviour
                 Spawner.ActiveGems.Remove(gem);
             }
             
-            GameObject[] ChallengeGems = GameObject.FindGameObjectsWithTag("ChallengeGem");
-            foreach (GameObject gem in ChallengeGems)
+            GameObject[] GoldenGems = GameObject.FindGameObjectsWithTag("GoldenGem");
+            foreach (GameObject gem in GoldenGems)
             {
                 Destroy(gem);
                 Spawner.ActiveGems.Remove(gem);
